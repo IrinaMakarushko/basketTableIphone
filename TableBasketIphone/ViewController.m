@@ -58,7 +58,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString* info = [[self.basket.fruitList objectAtIndex:indexPath.row]getInfo];
+    NSInteger integral = indexPath.row/2;
+    NSInteger remainder = indexPath.row%2;
+    NSString* info ;
+    if  (remainder == 0){
+	    info = [[self.basket.fruitList objectAtIndex:integral]getInfo];
+    }else{
+	    NSUInteger* index = [basket.fruitList count] - integral-1;
+	    info = [[self.basket.fruitList objectAtIndex:index]getInfo];
+    }
     
     UIAlertView *messageAlert = [[UIAlertView alloc]
                                  initWithTitle:@"Row Selected" message:info delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
